@@ -137,6 +137,27 @@ public class DeckTest {
 		d.delete(0);
 		assertEquals("1", -1, d.binarySearch(new Card(Number.TWEE, Suit.KLAVEREN)));
 	}
+	
+	@Test
+	public void testCardSwap() {
+		Deck deck1 = new Deck();
+		Deck deck2 = new Deck();
+		Card card1 = new Card(Number.AAS, Suit.RUITEN);
+		Card card2 = new Card(Number.TWEE, Suit.RUITEN);
+		Card card3 = new Card(Number.TWEE, Suit.KLAVEREN);
+		
+		deck1.insertAt(card1, 0);
+		deck1.insertAt(card2, 1);
+		deck1.insertAt(card3, 2);
+		
+		deck2.insertAt(card1, 0);
+		deck2.insertAt(card3, 1);
+		deck2.insertAt(card2, 2);
+		
+		deck2.cardSwap(1, 2);
+		
+		assertEquals("swap", deck1, deck2);
+	}
 
 	@Test
 	public void testCompareTo() {

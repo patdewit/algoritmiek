@@ -57,6 +57,20 @@ public class Card implements Comparable<Card> {
 	public String toString() {
 		return num.toString() + " van " + suit.toString();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Card){
+			Card c = (Card) obj;
+			if(c.getDeckValue() == this.getDeckValue()){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+		return false;
+	}
 
 	/**
 	 * Vergelijk twee kaarten.

@@ -74,6 +74,17 @@ public class Deck {
 	 * @param index
 	 */
 	public void delete(int index) {
+		Card[] newCardArray = new Card[cardArray.length - 1];
+		
+		int position = 0;
+		for(int i = 0; i < cardArray.length; i++){
+			if(index != i){
+				newCardArray[position] = cardArray[i];
+				position++;
+			}
+		}
+		
+		cardArray = newCardArray;
 	}
 
 	/**
@@ -98,7 +109,10 @@ public class Deck {
 	 * @param indexA
 	 * @param indexB
 	 */
-	private void cardSwap(int indexA, int indexB) {
+	public void cardSwap(int indexA, int indexB) {
+		Card temp = cardArray[indexB];
+		cardArray[indexB] = cardArray[indexA];
+		cardArray[indexA] = temp;
 	}
 
 	/**
@@ -110,8 +124,14 @@ public class Deck {
 	 * @return De index van de gevonden kaart
 	 */
 	public int sequentialSearch(Card card) {
-		int result = -1;
-		return result;
+		int i = 0;
+		for(Card c : cardArray){
+			if(c.equals(card)){
+				return i; 
+			}
+			i++;
+		}
+		return -1;
 	}
 
 	/**
@@ -163,8 +183,26 @@ public class Deck {
 	 * @return De index van de gevonden kaart
 	 */
 	public int binarySearch(Card card) {
-		int result = -1;
-		return result;
+		if(isSorted()){
+			int low = 0;
+			int high = cardArray[cardArray.length - 1].getDeckValue();
+			int mid;
+			
+			while (low <= high) {
+		        mid = (low + high) / 2;
+		        if (cardArray[mid].getDeckValue() > card.getDeckValue()) {
+		            high = mid - 1;
+		        } else if (cardArray[mid].getDeckValue() < card.getDeckValue()) {
+		            low = mid + 1;
+		        } else {
+		            return mid;
+		        }
+		    }
+			
+			return -1;
+		}else{
+			return sequentialSearch(card);
+		}
 	}
 
 
