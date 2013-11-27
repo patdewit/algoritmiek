@@ -125,6 +125,11 @@ public class DeckTest {
 		//keer niet geldig
 		d.shuffle();
 		assertFalse("Ongesorteerd",d.isSorted());
+		
+		d.sort();
+		d.insertAt(new Card(Number.AAS, Suit.RUITEN), d.getDeckSize());
+		
+		assertTrue("Gesorteerd met extra kaart", d.isSorted());
 	}
 
 	@Test

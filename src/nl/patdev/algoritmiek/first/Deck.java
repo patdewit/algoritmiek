@@ -29,8 +29,6 @@ public class Deck {
 				cardArray[newCard.getDeckValue()] = newCard;
 			}
 		}
-		
-		System.out.println(toString());
 	}
 	
 	public Card getById(int value){
@@ -163,12 +161,12 @@ public class Deck {
 	 * @return
 	 */
 	public boolean isSorted(){
-		int i = 0;
+		int last = 0;
 		for(Card c : cardArray){
-			if(c.getDeckValue() != i){
+			if(c.getDeckValue() < last){
 				return false;
 			}
-			i++;
+			last = c.getDeckValue();
 		}
 		
 		return true;
