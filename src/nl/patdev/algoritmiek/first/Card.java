@@ -16,6 +16,13 @@ public class Card implements Comparable<Card> {
 		this.suit = suit;
 	}
 	
+	/**
+	 * @return the num
+	 */
+	public Number getNumberTest() {
+		return num;
+	}
+	
 
 	/**
 	 * @return the num
